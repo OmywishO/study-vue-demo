@@ -6,9 +6,6 @@ Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
 
-/* Router Modules */
-import componentsRouter from './modules/components'
-
 /**
  * Note: sub-menu only appear when route children.length >= 1
  * Detail see: https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -71,34 +68,6 @@ export const constantRoutes = [
     path: '/',
     component: () => import('@/views/home/home'),
     hidden: true
-  },
-  // 假首页展示
-  {
-    path: '/dashboard',
-    component: Layout,
-    redirect: '/dashboard/index',
-    children: [
-      {
-        path: 'index',
-        redirect: '/',
-        name: 'Dashboard',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
-      }
-    ]
-  },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/index',
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: { title: '个人信息', icon: 'user', noCache: true }
-      }
-    ]
   }
 ]
 
@@ -107,23 +76,6 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  {
-    path: '/icon',
-    component: Layout,
-    redirect: '/icon/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/icons/index'),
-        name: 'Icons',
-        meta: { title: '图标', icon: 'icon', noCache: true }
-      }
-    ]
-  },
-
-  /** when your routing map is too long, you can split it into small modules **/
-  componentsRouter,
-
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
