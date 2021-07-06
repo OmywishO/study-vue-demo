@@ -4,7 +4,10 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-import Layout from '@/layout'
+// import Layout from '@/layout'
+
+/* Router Modules */
+// import componentsRouter from './modules/components'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -35,7 +38,6 @@ import Layout from '@/layout'
 export const constantRoutes = [
   {
     path: '/redirect',
-    component: Layout,
     hidden: true,
     children: [
       {
@@ -76,6 +78,11 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
+  {
+    path: '/icon',
+    component: () => import('@/views/icons/index'),
+    hidden: true
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
@@ -91,13 +98,13 @@ const router = createRouter()
 // 导航转成路由
 export function menuToRoute(menu) {
   const route = { ...menu }
-  if (menu.component && typeof menu.component === 'string') {
-    if (menu.component === 'layout') {
-      route.component = Layout
-    } else {
-      route.component = (resolve) => require([`@/views/${menu.component}`], resolve)
-    }
-  }
+  // if (menu.component && typeof menu.component === 'string') {
+  //   if (menu.component === 'layout') {
+  //     route.component = Layout
+  //   } else {
+  //     route.component = (resolve) => require([`@/views/${menu.component}`], resolve)
+  //   }
+  // }
   return route
 }
 
