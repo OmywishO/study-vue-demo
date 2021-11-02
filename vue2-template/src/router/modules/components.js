@@ -12,8 +12,23 @@ const componentsRouter = {
   children: [
     {
       path: 'avatar-upload',
+      redirect: 'noRedirect',
       component: 'components-demo/avatar-upload',
       name: 'AvatarUploadDemo',
+      children: [
+        {
+          path: 'avatar-upload2',
+          name: 'AvatarUploadDemo2',
+          component: 'components-demo/avatar-upload',
+          meta: { title: '头像上传2', roles: ['admin'] }
+        },
+        {
+          path: 'avatar-upload3',
+          name: 'AvatarUploadDemo3',
+          component: 'components-demo/avatar-upload',
+          meta: { title: '头像上传3', roles: ['admin'] }
+        }
+      ],
       meta: { title: '头像上传', buttons: ['add', 'export', 'upload'], roles: ['admin'] }
     },
     {

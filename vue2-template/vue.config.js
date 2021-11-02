@@ -36,6 +36,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    // 前端数据资源请求走代理，便于Nginx部署和微服务架构对接，处理跨域问题
     proxy: {
       '/tiles/': {
         target: 'http://192.168.11.240:8080/', // 自定义对接ip地址
