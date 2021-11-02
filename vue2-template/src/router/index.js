@@ -4,7 +4,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 /* Layout */
-// import Layout from '@/layout'
+import Layout from '@/layout/index.vue'
 
 /* Router Modules */
 // import componentsRouter from './modules/components'
@@ -80,7 +80,7 @@ export const constantRoutes = [
 export const asyncRoutes = [
   {
     path: '/icon',
-    component: () => import('@/views/icons/index'),
+    component: 'icons/index', // 可使用字符串，加载后端路由数据
     hidden: true
   },
   // 404 page must be placed at the end !!!
@@ -98,13 +98,13 @@ const router = createRouter()
 // 导航转成路由
 export function menuToRoute(menu) {
   const route = { ...menu }
-  // if (menu.component && typeof menu.component === 'string') {
-  //   if (menu.component === 'layout') {
-  //     route.component = Layout
-  //   } else {
-  //     route.component = (resolve) => require([`@/views/${menu.component}`], resolve)
-  //   }
-  // }
+  if (menu.component && typeof menu.component === 'string') {
+    if (menu.component === 'layout') {
+      route.component = Layout
+    } else {
+      route.component = (resolve) => require([`@/views/${menu.component}`], resolve)
+    }
+  }
   return route
 }
 
