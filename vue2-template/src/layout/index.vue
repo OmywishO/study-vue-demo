@@ -1,18 +1,13 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <div :class="{'fixed-header':fixedHeader}">
-      <navbar />
-    </div>
+    <sidebar class="sidebar-container" />
     <div :class="{hasTagsView:needTagsView}" class="main-container">
-      <div>
-        <sidebar class="sidebar-container" />
+      <div :class="{'fixed-header':fixedHeader}">
+        <navbar />
         <tags-view v-if="needTagsView" />
       </div>
-      <div class="main">
-        <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
-        <app-main />
-      </div>
+      <app-main />
       <right-panel v-if="showSettings">
         <settings />
       </right-panel>
@@ -21,7 +16,6 @@
 </template>
 
 <script>
-import Breadcrumb from '@/components/Breadcrumb'
 import RightPanel from '@/components/RightPanel'
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
@@ -33,7 +27,6 @@ export default {
     AppMain,
     Navbar,
     RightPanel,
-    Breadcrumb,
     Settings,
     Sidebar,
     TagsView
@@ -78,15 +71,8 @@ export default {
       position: fixed;
       top: 0;
     }
-    // 滚动条修改
-    ::v-deep .el-scrollbar__wrap{
-      overflow-x: hidden;
-    }
   }
-  .main{
-    display: flex;
-    flex-direction: column;
-  }
+
   .drawer-bg {
     background: #000;
     opacity: 0.3;

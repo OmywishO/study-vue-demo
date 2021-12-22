@@ -1,12 +1,10 @@
 <template>
   <section class="app-main">
-    <el-scrollbar style="height:calc(100vh - 86px)">
-      <transition name="fade-transform" mode="out-in">
-        <keep-alive :include="cachedViews">
-          <router-view :key="key" />
-        </keep-alive>
-      </transition>
-    </el-scrollbar>
+    <transition name="fade-transform" mode="out-in">
+      <keep-alive :include="cachedViews">
+        <router-view :key="key" />
+      </keep-alive>
+    </transition>
   </section>
 </template>
 
@@ -26,11 +24,11 @@ export default {
 
 <style lang="scss" scoped>
 .app-main {
-  box-sizing: border-box;
-  min-height: calc(100vh - 86px);
+  /* 50= navbar  50  */
+  min-height: calc(100vh - 50px);
+  width: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #fff;
 }
 
 .fixed-header+.app-main {
